@@ -1993,100 +1993,59 @@ html.dark .site-header .brand-mark img{
 html,body{overflow-x:hidden}
 
 /* =========================================================
-   MISS-A-SERVICE FLOATING WIDGET (Spotify + YouTube)
-   Replaces the single Spotify float with a two-option card.
-   Self-contained block appended last so it wins the cascade.
+   MISS-A-SERVICE FLOATING PILL (scrolls to #messages)
+   Small "Miss a service?" pill that smooth-scrolls to the
+   messages section. Self-contained block appended last.
    ========================================================= */
 .miss-float{
   position:fixed;
   right:18px;
   bottom:18px;
   z-index:100;
-  width:258px;
-  box-sizing:border-box;
-  padding:13px 13px 12px;
   display:flex;
-  flex-direction:column;
+  align-items:center;
   gap:10px;
+  padding:11px 12px 11px 16px;
   background:var(--paper);
   color:var(--ink);
+  text-decoration:none;
   border:1px solid var(--line);
-  border-radius:18px;
-  box-shadow:0 18px 42px rgba(21,21,21,.14),0 0 0 1px rgba(21,21,21,.03);
+  border-radius:999px;
+  box-shadow:0 16px 38px rgba(21,21,21,.14),0 0 0 1px rgba(21,21,21,.03);
   animation:missFloat 4s ease-in-out infinite;
+  transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease;
 }
 html.dark .miss-float{
   background:#232120;
   border-color:#3a3733;
-  box-shadow:0 18px 42px rgba(0,0,0,.45);
+  box-shadow:0 16px 38px rgba(0,0,0,.45);
 }
-.miss-float-head{
-  display:flex;
-  align-items:baseline;
-  justify-content:space-between;
-  gap:8px;
+.miss-float:hover{
+  transform:translateY(-3px);
+  border-color:var(--red);
+  box-shadow:0 22px 44px rgba(21,21,21,.18);
 }
-.miss-float-title{
+.miss-float-text{
   font-size:12px;
   font-weight:800;
   letter-spacing:-.01em;
-  color:var(--ink);
+  white-space:nowrap;
 }
-.miss-float-head small{
-  font-size:9px;
-  color:var(--muted);
-}
-.miss-float-options{
-  display:flex;
-  gap:8px;
-}
-.miss-opt{
-  flex:1;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:6px;
-  padding:9px 10px;
-  border-radius:999px;
-  font-size:11px;
-  font-weight:800;
-  text-decoration:none;
-  color:var(--ink);
-  border:1px solid var(--line);
-  background:#fff;
-  transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease,color .2s ease;
-}
-html.dark .miss-opt{
-  background:#2a2825;
-  color:#f5f3ef;
-  border-color:#3a3733;
-}
-.miss-opt:hover{
-  transform:translateY(-2px);
-  box-shadow:0 8px 18px rgba(21,21,21,.12);
-}
-.miss-opt-spotify:hover{
-  color:#12803b;
-  border-color:#1DB954;
-  box-shadow:0 8px 18px rgba(29,185,84,.18);
-}
-.miss-opt-youtube:hover{
-  color:#cc0000;
-  border-color:#FF0000;
-  box-shadow:0 8px 18px rgba(255,0,0,.14);
-}
-.miss-opt-dot{
-  width:18px;
-  height:18px;
+.miss-float-arrow{
+  width:26px;
+  height:26px;
   border-radius:50%;
   display:grid;
   place-items:center;
-  font-size:7px;
+  background:var(--red);
   color:#fff;
-  flex:0 0 18px;
+  font-size:11px;
+  flex:0 0 26px;
+  transition:transform .22s ease;
 }
-.miss-opt-spotify .miss-opt-dot{background:#1DB954}
-.miss-opt-youtube .miss-opt-dot{background:#FF0000;font-size:8px}
+.miss-float:hover .miss-float-arrow{
+  transform:rotate(45deg) translate(1px,-1px);
+}
 body:has(.mobile-menu.open) .miss-float{
   opacity:0;
   visibility:hidden;
@@ -2099,15 +2058,14 @@ body:has(.mobile-menu.open) .miss-float{
 }
 @media(max-width:760px){
   .miss-float{
-    left:12px;
+    left:auto;
     right:12px;
     bottom:78px;
-    width:auto;
   }
 }
 @media(max-width:420px){
-  .miss-float{padding:11px;gap:8px}
-  .miss-opt{padding:8px 6px;font-size:10px}
+  .miss-float{padding:10px 11px 10px 14px}
+  .miss-float-text{font-size:11px}
 }
 @media(prefers-reduced-motion:reduce){
   .miss-float{animation:none!important}
