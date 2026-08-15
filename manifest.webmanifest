@@ -1,0 +1,17 @@
+{
+  "name": "FaithTV",
+  "short_name": "FaithTV",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f5f3ef",
+  "theme_color": "#f5f3ef",
+  "description": "FaithTV live church audio and service schedule.",
+  "icons": [
+    {
+      "src": "winners-cropped.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

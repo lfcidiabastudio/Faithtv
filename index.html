@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en">
+<head>
+<script>
+(function(){try{if(localStorage.getItem("faithtv-theme")==="dark")document.documentElement.classList.add("dark")}catch(e){}})();
+</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f5f3ef">
+<meta name="description" content="FaithTV — live church audio, service times and previous messages.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="winners-cropped.svg">
+<link rel="apple-touch-icon" href="faithtv-logo.png">
+<title>FaithTV — Hear the Word</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="site-header" id="siteHeader">
+  <div class="header-inner shell">
+    <a class="brand" href="#home" aria-label="FaithTV home">
+      <span class="brand-mark"><img src="winners-cropped.svg" alt=""></span>
+      <span class="wordmark">Faith<span>TV</span></span>
+    </a>
+
+    <a class="header-live header-live-center" href="#liveCard"><span></span><span class="header-listen-text" id="headerListenText">Listen now</span></a>
+
+    <nav class="desktop-nav" aria-label="Primary navigation">
+      <a class="active" href="#home">Home</a>
+      <a href="#listen">Listen</a>
+      <a href="#services">Services</a>
+      <a href="#messages">Messages</a>
+      <a href="#visit">Visit</a>
+    </nav>
+
+    <div class="nav-actions">
+      <a class="header-spotify" href="https://open.spotify.com/show/3rQSg1gCTou5qL3T68jc6q" target="_blank" rel="noopener">Messages <span>↗</span></a>
+      <button class="install-nav" id="installButton" hidden>Install FaithTV</button>
+      <a class="header-live" href="#listen"><span></span> Listen live</a>
+      <button class="menu" id="menu" aria-label="Open navigation" aria-expanded="false" aria-controls="mobileMenu">☰</button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu-backdrop" id="menuBackdrop" aria-hidden="true"></div>
+<aside class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
+  <div class="menu-head">
+    <span class="menu-brand">Faith<span>TV</span></span>
+    <button class="menu-close" id="menuClose" aria-label="Close navigation">✕</button>
+  </div>
+  <nav class="menu-links">
+    <a href="#home">Home</a>
+    <a href="#listen">Listen</a>
+    <a href="#services">Services</a>
+    <a href="#messages">Messages</a>
+    <a href="#visit">Visit</a>
+  </nav>
+  <div class="menu-foot">
+    <a class="menu-spotify" href="https://open.spotify.com/show/3rQSg1gCTou5qL3T68jc6q" target="_blank" rel="noopener">Audio messages on Spotify ↗</a>
+    <a class="menu-youtube" href="https://youtube.com/@faithmediang" target="_blank" rel="noopener">Watch on YouTube ↗</a>
+    <button id="mobileInstall" hidden>＋ Add FaithTV to Home Screen</button>
+    <div class="theme-row">
+      <span>Dark theme</span>
+      <label class="switch"><input type="checkbox" id="themeToggle"><span class="slider"></span></label>
+    </div>
+  </div>
+</aside>
+
+<main id="main">
+  <!-- HERO / SERVICE STATE -->
+  <section class="hero shell" id="home">
+    <div class="hero-grid">
+      <div class="hero-copy reveal">
+        <div class="eyebrow"><i></i> FAITHTV · LIVE AUDIO</div>
+        <div class="hero-label" id="heroLabel">YOU'RE EARLY. WE'LL BE LIVE SOON.</div>
+        <h1 id="heroTitle">Sunday First Service</h1>
+        <p class="hero-date" id="heroDate">Sunday, August 16, 2026</p>
+
+        <div class="countdown" id="countdown" aria-label="Countdown to next service">
+          <div><strong id="days">00</strong><small>Days</small></div>
+          <span>:</span>
+          <div><strong id="hours">00</strong><small>Hours</small></div>
+          <span>:</span>
+          <div><strong id="minutes">00</strong><small>Minutes</small></div>
+          <span>:</span>
+          <div><strong id="seconds">00</strong><small>Seconds</small></div>
+        </div>
+
+        <div class="hero-service" id="heroService">First Service · 7:00 AM</div>
+        <p class="early-copy" id="earlyCopy">Prepare your heart. Invite someone to listen with you.</p>
+
+        <div class="hero-actions">
+          <a class="hero-secondary" href="#listen">View service details <span>↓</span></a>
+          <button class="calendar-btn" id="calendarButton">＋ Add to Calendar</button>
+          <button class="quiet-link" id="notifyButton">Notify me <span>↗</span></button>
+        </div>
+
+      
+      </div>
+
+      <div class="hero-visual reveal hero-listener-panel"><div class="live-card reveal" id="liveCard">
+        <div class="live-card-top">
+          <div>
+            <span class="card-label">FAITHTV LIVE AUDIO</span>
+            <span class="card-clock" id="ngClock">--:--</span>
+          </div>
+          <span class="card-live-badge"><i></i><span id="cardLiveText">OFFLINE</span></span>
+        </div>
+
+        <div class="live-main">
+          <div class="broadcast-mark">
+            <div class="mark-orbit one"></div>
+            <div class="mark-orbit two"></div>
+            <div class="mark-core"><img src="winners-white-cropped.svg" alt=""></div>
+          </div>
+
+          <div class="player-info">
+            <span class="overline" id="playerState">NEXT BROADCAST</span>
+            <h3 id="playerTitle">Sunday First Service</h3>
+            <p id="playerDescription">Live church audio · 7:00 AM</p>
+
+            <div class="pulse" id="pulse" aria-hidden="true">
+              <span class="pulse-dot">● LIVE</span>
+              <div class="wave">
+                <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+              </div>
+            </div>
+
+            <div class="now-playing" id="nowPlaying">
+              <span>NOW PLAYING</span><b id="nowPlayingText">FaithTV Live Service</b>
+            </div>
+          </div>
+        </div>
+
+        <div class="listen-controls">
+          <button class="listen-primary" id="playerButton" aria-label="Listen now to the live FaithTV church service">
+            <span class="button-icon" id="playIcon">▶</span>
+            <span id="playText">Listen now</span>
+          </button>
+          <div class="volume-control">
+            <span aria-hidden="true">🔊</span>
+            <input id="volume" type="range" min="0" max="1" step=".01" value=".9" aria-label="Volume">
+          </div>
+        </div>
+
+        <div class="listener-line" id="listenerBox">
+          <i></i><span id="listenerText">Listener count available when live</span>
+        </div>
+      </div></div>
+    </div>
+  </section>
+
+  <div class="hero-strip" aria-label="FaithTV values">
+    <span>WORSHIP</span><b>✦</b><span>WORD</span><b>✦</b><span>PRAYER</span><b>✦</b><span>COMMUNITY</span>
+  </div>
+
+  <!-- LIVE / LISTENING -->
+  <section class="listen-section shell" id="listen">
+    <div class="section-kicker">01 / THE LISTENING EXPERIENCE</div>
+
+    <div class="listen-layout">
+      <div class="listen-intro reveal">
+        <div class="live-state" id="status"><i></i><span>Offline</span></div>
+        <h2>When we're live,<br><em>just press listen.</em></h2>
+        <p>FaithTV is built for every member — including someone opening the website for the first time from a WhatsApp link.</p>
+      </div>
+
+      <div class="listen-utility reveal">
+        <span class="section-kicker">LISTENING MADE SIMPLE</span>
+        <h3>One tap.<br><em>Stay with the service.</em></h3>
+        <p>Start the audio once. Your compact player stays with you while you explore the rest of FaithTV.</p>
+        <div class="utility-list">
+          <div><b>01</b><span>Tap <strong>Listen now</strong> when the service is live.</span></div>
+          <div><b>02</b><span>Keep listening while you scroll.</span></div>
+          <div><b>03</b><span>Share the live service with someone on WhatsApp.</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="listen-support reveal">
+      <div>
+        <span class="overline">WHILE YOU LISTEN</span>
+        <strong>Stay with the service. The player stays with you.</strong>
+      </div>
+      <div class="support-actions">
+        <button id="shareButton">Share live ↗</button>
+        <a id="whatsappButton" target="_blank" rel="noopener">WhatsApp ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services shell" id="services">
+    <div class="section-kicker">02 / SERVICE TIMES</div>
+    <div class="section-head reveal">
+      <div>
+        <h2>Know when<br><em>we gather.</em></h2>
+      </div>
+      <p>Three services each week. The site automatically knows which one comes next and changes the experience when it begins.</p>
+    </div>
+
+    <div class="service-table">
+      <article class="service-row reveal">
+        <span class="service-index">01</span>
+        <span class="service-day">SUN</span>
+        <div><h3>First Service</h3><p>Sunday worship & the Word</p></div>
+        <strong>7:00 <small>AM</small></strong>
+        <span class="service-end">— 9:00 AM</span>
+      </article>
+      <article class="service-row reveal">
+        <span class="service-index">02</span>
+        <span class="service-day">SUN</span>
+        <div><h3>Second Service</h3><p>Sunday worship & the Word</p></div>
+        <strong>9:00 <small>AM</small></strong>
+        <span class="service-end">— 12:30 PM</span>
+      </article>
+      <article class="service-row reveal">
+        <span class="service-index">03</span>
+        <span class="service-day">WED</span>
+        <div><h3>Wednesday Service</h3><p>Midweek worship & teaching</p></div>
+        <strong>5:00 <small>PM</small></strong>
+        <span class="service-end">— 7:00 PM</span>
+      </article>
+    </div>
+  </section>
+
+  <!-- MESSAGE / SPOTIFY -->
+  <section class="messages shell" id="messages">
+    <div class="message-feature reveal">
+      <div class="message-copy">
+        <span class="section-kicker">03 / MESSAGES</span>
+        <h2>Miss a service?<br><em>Catch the message.</em></h2>
+        <p>Previous messages live on Spotify and YouTube, so you can keep watching or listening when the live broadcast has ended.</p>
+        <div class="message-ctas">
+          <a class="dark-button" href="https://open.spotify.com/show/3rQSg1gCTou5qL3T68jc6q" target="_blank" rel="noopener">Listen on Spotify <span>↗</span></a>
+          <a class="dark-button" href="https://youtube.com/@faithmediang" target="_blank" rel="noopener">Watch on YouTube <span>↗</span></a>
+        </div>
+      </div>
+      <div class="message-visual" aria-hidden="true">
+        <div class="message-ring r1"></div><div class="message-ring r2"></div><div class="message-ring r3"></div>
+        <div class="message-disc"><img src="winners-white-cropped.svg" alt=""><span>FAITHTV</span></div>
+        <small>PREVIOUS MESSAGES</small>
+      </div>
+    </div>
+  </section>
+
+  <!-- EVERYWHERE -->
+  <section class="everywhere shell reveal">
+    <div class="everywhere-copy">
+      <span class="section-kicker">LISTEN WHEREVER YOU ARE</span>
+      <h2>One church.<br><em>Many places.</em></h2>
+      <p>Abeokuta · Lagos · Abuja · London · Everywhere.</p>
+    </div>
+    <div class="everywhere-art" aria-hidden="true">
+      <div class="e-orbit e1"></div><div class="e-orbit e2"></div>
+      <div class="e-dot"></div>
+      <div class="e-center"><img src="winners-white-cropped.svg" alt=""><span>FAITHTV</span></div>
+    </div>
+  </section>
+
+  <!-- VISIT -->
+  <section class="visit shell" id="visit">
+    <div class="section-kicker">04 / VISIT & ENQUIRIES</div>
+    <div class="visit-grid">
+      <div class="visit-main reveal">
+        <span class="overline">COME WORSHIP WITH US</span>
+        <h2>Find us in<br><em>Abeokuta.</em></h2>
+        <p>15, Lisabi Grammar School Road, Idiaba, Abeokuta, Ogun State, Nigeria.</p>
+        <a class="dark-button" href="https://www.google.com/maps/search/?api=1&query=15%2C%20Lisabi%20Grammar%20School%20Road%2C%20Idiaba%2C%20Abeokuta%2C%20Ogun%20State%2C%20Nigeria" target="_blank" rel="noopener">Get directions <span>↗</span></a>
+      </div>
+
+      <div class="contact-main reveal">
+        <span class="overline">ENQUIRIES</span>
+        <h3>Need to speak with us?</h3>
+        <p>For enquiries, service information or general questions.</p>
+        <a href="tel:+2349070642750">+234 907 064 2750 <span>↗</span></a>
+        <a href="tel:+2347030182618">+234 703 018 2618 <span>↗</span></a>
+        <div class="contact-buttons">
+          <a class="small-button" href="tel:+2349070642750">Call us</a>
+          <a class="small-button red" href="https://wa.me/2349070642750" target="_blank" rel="noopener">WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSTALL -->
+  <section class="install-section shell reveal" id="installSection">
+    <div>
+      <span class="section-kicker">FAITHTV ON YOUR PHONE</span>
+      <h2>Keep FaithTV<br><em>one tap away.</em></h2>
+      <p>Install FaithTV like an app and open the service experience directly from your home screen.</p>
+    </div>
+    <button class="dark-button" id="installSectionButton">＋ Install FaithTV <span>↗</span></button>
+  </section>
+
+  <section class="quote shell reveal">
+    <span class="quote-mark">“</span>
+    <blockquote>For where two or three gather in my name, there am I with them.</blockquote>
+    <small>MATTHEW 18:20</small>
+  </section>
+</main>
+
+<a class="spotify-float" id="spotifyFloat" href="https://open.spotify.com/show/3rQSg1gCTou5qL3T68jc6q" target="_blank" rel="noopener" aria-label="Miss a service? Catch the message on Spotify">
+  <span class="spotify-icon">●</span>
+  <span><b>Miss a service?</b><small>Catch the message on Spotify</small></span>
+  <strong>↗</strong>
+</a>
+
+<div class="mini-player" id="miniPlayer" aria-live="polite">
+  <div class="mini-left">
+    <span class="mini-live-dot" id="miniLiveDot"></span>
+    <div><b id="miniTitle">FaithTV</b><small id="miniSubtitle">Ready to listen</small></div>
+  </div>
+  <button id="miniPlay" class="mini-play" aria-label="Play or pause FaithTV">▶</button>
+  <div class="mini-progress"><span></span></div>
+  <span class="mini-volume">🔊</span>
+  <input id="miniVolume" type="range" min="0" max="1" step=".01" value=".9" aria-label="Volume">
+  <button id="miniClose" class="mini-close" aria-label="Close audio player">×</button>
+</div>
+
+<footer>
+  <div class="shell footer">
+    <a class="brand" href="#home" aria-label="FaithTV home"><span class="brand-mark"><img src="winners-cropped.svg" alt=""></span><span class="wordmark">Faith<span>TV</span></span></a>
+    <div><a href="#listen">Listen</a><a href="#services">Services</a><a href="#messages">Messages</a><a href="#visit">Visit</a></div>
+    <small>© <span id="year"></span> FaithTV</small>
+  </div>
+</footer>
+
+<script src="config.js"></script>
+<script src="app.js"></script>
+<script>
+(function(){
+  const header=document.getElementById('siteHeader');
+  window.addEventListener('scroll',()=>header.classList.toggle('scrolled',window.scrollY>12),{passive:true});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#151515">
+<meta name="description" content="Install FaithTV on your phone or computer — add it to your home screen like an app.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="winners-cropped.svg">
+<link rel="apple-touch-icon" href="faithtv-logo.png">
+<title>Install FaithTV</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#f7f6f3;color:#151515;font-family:"DM Sans",sans-serif;min-height:100vh;display:flex;flex-direction:column}
+.shell{width:min(620px,calc(100% - 40px));margin:auto}
+header{height:72px;display:flex;align-items:center;border-bottom:1px solid #e3e0db;background:#f7f6f3dd;backdrop-filter:blur(18px);position:sticky;top:0;z-index:10}
+.brand{display:flex;align-items:center;gap:9px;text-decoration:none;color:#151515;font-family:Manrope;font-weight:800}
+.logo{width:34px;height:34px;display:grid;place-items:center}.logo img{width:100%;height:100%;object-fit:contain}
+.wordmark{font-size:18px;letter-spacing:-.05em}.wordmark span{font-weight:500;color:#77736e}
+main{padding:56px 0 70px;flex:1}
+.eyebrow{display:flex;align-items:center;gap:9px;font-size:10px;font-weight:800;letter-spacing:.18em;color:#77736e;margin:0 0 14px}
+.eyebrow i{width:6px;height:6px;border-radius:50%;background:#e52635;display:inline-block}
+h1{font-family:Manrope;font-size:clamp(30px,6vw,44px);line-height:1.05;letter-spacing:-.03em;margin:0 0 12px}
+p.lead{color:#77736e;font-size:15px;line-height:1.55;margin:0 0 30px}
+.card{background:#fff;border:1px solid #e3e0db;border-radius:18px;padding:26px;box-shadow:0 18px 45px #0000000a}
+.install-btn{width:100%;border:0;border-radius:14px;background:#151515;color:#fff;font-family:Manrope;font-weight:800;font-size:15px;padding:17px;cursor:pointer;transition:.2s;display:flex;align-items:center;justify-content:center;gap:10px}
+.install-btn:hover{transform:translateY(-2px);box-shadow:0 16px 34px #0003}
+.install-btn b{width:26px;height:26px;border-radius:50%;background:#e52635;display:grid;place-items:center;font-size:11px}
+.install-btn[hidden]{display:none}
+.ok{width:100%;border-radius:14px;background:#eef7ee;border:1px solid #cfe6cf;color:#1c5c1c;font-size:14px;font-weight:600;padding:16px;text-align:center;display:none}
+.ok.show{display:block}
+.hint{font-size:11px;color:#9a958f;text-align:center;margin-top:12px;display:none}
+.hint.show{display:block}
+.steps{display:none;margin-top:22px}
+.steps.show{display:block}
+.steps h3{font-family:Manrope;font-size:13px;letter-spacing:.14em;color:#151515;margin:0 0 14px}
+.step{display:flex;gap:13px;align-items:flex-start;padding:13px 0;border-top:1px solid #f0eeea}
+.step:first-of-type{border-top:0}
+.step-num{width:26px;height:26px;flex:none;border-radius:50%;background:#151515;color:#fff;display:grid;place-items:center;font-size:11px;font-weight:800;font-family:Manrope}
+.step b{display:block;font-size:13px;margin-bottom:2px}
+.step p{margin:0;font-size:12px;color:#77736e;line-height:1.5}
+.step p b{display:inline;color:#151515;font-weight:700}
+.back{display:block;text-align:center;margin-top:26px;color:#77736e;font-size:13px;font-weight:600;text-decoration:none}
+.back:hover{color:#151515}
+footer{border-top:1px solid #e3e0db;padding:20px 0;font-size:11px;color:#9a958f;text-align:center}
+@media(max-width:520px){.card{padding:20px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="shell">
+    <a class="brand" href="./"><span class="logo"><img src="winners-cropped.svg" alt="FaithTV"></span><span class="wordmark">Faith<span>TV</span></span></a>
+  </div>
+</header>
+
+<main class="shell">
+  <p class="eyebrow"><i></i>FAITHTV · INSTALL APP</p>
+  <h1>Keep FaithTV<br>one tap away.</h1>
+  <p class="lead">Install FaithTV like an app on your phone or computer. It opens in its own window, keeps you connected to the live stream, and sits right on your home screen.</p>
+
+  <div class="card">
+    <button class="install-btn" id="installBtn" hidden><span>Install FaithTV</span><b>↘</b></button>
+    <div class="ok" id="okMsg">FaithTV is installed. Open it anytime from your home screen.</div>
+    <p class="hint" id="hint">You can also add it manually from your browser menu — steps below.</p>
+
+    <div class="steps" id="steps"></div>
+  </div>
+
+  <a class="back" href="./">← Back to FaithTV</a>
+</main>
+
+<footer>© <span id="year"></span> FaithTV</footer>
+
+<script>
+(function(){
+ var btn=document.getElementById("installBtn"),ok=document.getElementById("okMsg"),
+     hint=document.getElementById("hint"),steps=document.getElementById("steps");
+ var deferred=null,standalone=false;
+ var isiOS=/iphone|ipad|ipod/i.test(navigator.userAgent)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1);
+ var isAndroid=/android/i.test(navigator.userAgent);
+ var isChromium=!!window.chrome&&(isAndroid||!/edge\//i.test(navigator.userAgent)&&!/opr\//i.test(navigator.userAgent));
+
+ function standaloneMode(){
+  if(navigator.standalone===true)return true;
+  return window.matchMedia&&window.matchMedia("(display-mode: standalone)").matches;
+ }
+ function showSteps(html){steps.innerHTML=html;steps.classList.add("show")}
+ function stepHTML(n,title,body){return '<div class="step"><div class="step-num">'+n+'</div><div><b>'+title+'</b><p>'+body+'</p></div></div>'}
+
+ function showManual(){
+  hint.classList.add("show");
+  if(isiOS){
+   showSteps(
+    stepHTML(1,"Open FaithTV in Safari","Make sure you\u2019re using <b>Safari</b>, not another browser, or the option below won\u2019t appear.")+
+    stepHTML(2,"Tap the Share button","It\u2019s the square with an <b>up arrow</b> at the bottom (or top on iPad).")+
+    stepHTML(3,"Choose \u201cAdd to Home Screen\u201d","Scroll down the share sheet and tap <b>Add to Home Screen</b>.")+
+    stepHTML(4,"Tap Add","You\u2019re done \u2014 FaithTV now lives on your home screen.")
+   );
+  }else if(isAndroid){
+   showSteps(
+    stepHTML(1,"Open FaithTV in Chrome","Use <b>Chrome</b> on Android, then tap the menu button \u2014 the three dots <b>\u22ee</b> at the top right.")+
+    stepHTML(2,"Tap \u201cInstall app\u201d or \u201cAdd to Home screen\u201d","Choose <b>Install app</b> if you see it. Otherwise pick <b>Add to Home screen</b>.")+
+    stepHTML(3,"Confirm","Tap <b>Install</b> and FaithTV will be added to your home screen.")
+   );
+  }else{
+   showSteps(
+    stepHTML(1,"Open FaithTV in Chrome or Edge","Use a desktop <b>Chrome</b> or <b>Edge</b> browser.")+
+    stepHTML(2,"Click the install icon","It\u2019s the small <b>monitor with a down arrow</b> at the right end of the address bar, or choose <b>Install FaithTV\u2026</b> from the browser menu.")+
+    stepHTML(3,"Click Install","FaithTV opens in its own app window.")
+   );
+  }
+ }
+
+ function install(){
+  if(deferred){
+   deferred.prompt();
+   deferred.userChoice.then(function(choice){
+    if(choice.outcome==="accepted"){ok.classList.add("show");btn.hidden=true;hint.classList.remove("show");steps.classList.remove("show")}
+   });
+  }
+ }
+ btn.addEventListener("click",install);
+
+ window.addEventListener("beforeinstallprompt",function(e){
+  e.preventDefault();
+  deferred=e;
+  if(!standalone&&!isiOS)btn.hidden=false;
+ });
+ window.addEventListener("appinstalled",function(){
+  ok.classList.add("show");btn.hidden=true;hint.classList.remove("show");steps.classList.remove("show");
+ });
+
+ setTimeout(function(){
+  if(standaloneMode()){ok.classList.add("show");btn.hidden=true;hint.classList.remove("show")}
+  else if(!deferred)showManual();
+ },2500);
+
+ if("serviceWorker"in navigator)navigator.serviceWorker.register("sw.js").catch(function(){});
+ document.getElementById("year").textContent=new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
