@@ -1,5 +1,5 @@
-const CACHE="faithtv-v2";
-const STATIC=["./","./index.html","./install.html","./styles.css","./app.js","./config.js","./manifest.webmanifest","./faithtv-logo.png","./winners-cropped.svg","./winners-white-cropped.svg"];
+const CACHE="faithtv-v3";
+const STATIC=["./","./index.html","./install.html","./styles.css","./app.js","./config.js","./manifest.webmanifest","./faithtv-logo.png","./winners-cropped.svg","./winners-white-cropped.svg","./icon-192.png","./icon-512.png","./icon-maskable-512.png"];
 self.addEventListener("install",e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(STATIC)).then(()=>self.skipWaiting())));
 self.addEventListener("activate",e=>e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
 self.addEventListener("fetch",e=>{

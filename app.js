@@ -114,7 +114,7 @@ $("shareButton").addEventListener("click",async()=>{const s=currentService(new D
 
 /* PWA */
 window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();deferredPrompt=e;$("installButton").hidden=false;$("mobileInstall").hidden=false;$("installSectionButton").style.display="inline-flex"});
-async function installPwa(){if(!deferredPrompt){alert("Use your browser menu and choose Install FaithTV / Add to Home Screen.");return}deferredPrompt.prompt();await deferredPrompt.userChoice;deferredPrompt=null;$("installButton").hidden=true;$("mobileInstall").hidden=true;}
+async function installPwa(){if(!deferredPrompt){location.href="./install.html";return}deferredPrompt.prompt();await deferredPrompt.userChoice;deferredPrompt=null;$("installButton").hidden=true;$("mobileInstall").hidden=true;}
 $("installButton").addEventListener("click",installPwa);$("mobileInstall").addEventListener("click",installPwa);$("installSectionButton").addEventListener("click",installPwa);
 
 /* MOBILE NAV */
