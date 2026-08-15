@@ -2073,3 +2073,96 @@ body:has(.mobile-menu.open) .miss-float{
 @media(min-width:1200px){
   .miss-float{right:18px;bottom:18px}
 }
+
+/* =========================================================
+   SCRIPTURE CAROUSEL (swipeable famous verses, 0.6s slide)
+   ========================================================= */
+.scripture-viewport{
+  position:relative;
+  overflow:hidden;
+  max-width:800px;
+  margin:38px auto 0;
+  cursor:grab;
+  touch-action:pan-y;
+}
+.scripture-viewport:active{cursor:grabbing}
+.scripture-track{
+  display:flex;
+  transition:transform .6s cubic-bezier(.25,.8,.25,1);
+  will-change:transform;
+}
+.scripture-track.no-anim{transition:none}
+.scripture-slide{
+  flex:0 0 100%;
+  min-width:100%;
+  margin:0;
+  text-align:center;
+  user-select:none;
+  -webkit-user-select:none;
+}
+.scripture-slide blockquote{
+  max-width:750px;
+  margin:0 auto 20px;
+  font-size:clamp(25px,3vw,42px);
+  line-height:1.15;
+  letter-spacing:-.04em;
+}
+.scripture-slide small{
+  font-size:8px;
+  letter-spacing:.18em;
+  color:#8e8882;
+  font-weight:800;
+}
+html.dark .scripture-slide small{color:var(--muted)}
+.scripture-nav{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:18px;
+  margin-top:26px;
+}
+.scripture-arrow{
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  border:1px solid var(--line);
+  background:transparent;
+  color:var(--ink);
+  font-size:20px;
+  display:grid;
+  place-items:center;
+  cursor:pointer;
+  transition:transform .2s ease,border-color .2s ease,color .2s ease;
+}
+.scripture-arrow:hover{
+  color:var(--red);
+  border-color:var(--red);
+  transform:translateY(-2px);
+}
+.scripture-dots{
+  display:flex;
+  gap:8px;
+  align-items:center;
+}
+.scripture-dot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  border:0;
+  padding:0;
+  background:#d8d4ce;
+  cursor:pointer;
+  transition:background .3s ease,transform .3s ease;
+}
+.scripture-dot.active{
+  background:var(--red);
+  transform:scale(1.35);
+}
+html.dark .scripture-dot{background:#3a3733}
+@media(max-width:560px){
+  .scripture-viewport{margin-top:30px}
+  .scripture-slide blockquote{font-size:clamp(22px,7vw,30px)}
+}
+@media(prefers-reduced-motion:reduce){
+  .scripture-track{transition:none}
+}

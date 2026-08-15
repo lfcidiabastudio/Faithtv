@@ -128,3 +128,37 @@ const observer=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting&&e.ta
 if(window.matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("reduce-motion");
 if("serviceWorker"in navigator)window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));
 render();setInterval(render,1000);
+
+/* SCRIPTURE CAROUSEL */
+(function(){
+  const track=$("scriptureTrack"),viewport=$("scriptureViewport"),dotsBox=$("scriptureDots"),prev=$("scripturePrev"),next=$("scriptureNext");
+  if(!track||!viewport)return;
+  const n=track.children.length;
+  if(n<2)return;
+  track.appendChild(track.children[0].cloneNode(true));
+  const total=n+1;
+  let idx=0,timer=null,dragX=null,dragDX=0;
+  const syncDots=()=>{dotsBox.querySelectorAll(".scripture-dot").forEach((d,j)=>d.classList.toggle("active",j===idx));};
+  const restart=()=>{if(timer)clearInterval(timer);timer=setInterval(()=>step(1),6000);};
+  const setPos=(i,anim)=>{track.classList.toggle("no-anim",!anim);track.style.transform=`translateX(-${i*100}%)`;};
+  const go=i=>{idx=((i%n)+n)%n;setPos(idx,true);syncDots();restart();};
+  const step=dir=>{
+    if(idx===0&&dir<0){
+      setPos(total-1,false);void track.offsetWidth;idx=n-1;setPos(idx,true);syncDots();
+    }else if(idx===n-1&&dir>0){
+      setPos(total-1,true);const done=()=>{if(track.style.transform!==`translateX(-${total-1}00%)`)return;setPos(0,false);idx=0;syncDots();track.removeEventListener("transitionend",done);};
+      track.addEventListener("transitionend",done);
+    }else{go(idx+dir);}
+    restart();
+  };
+  const buildDots=()=>{for(let i=0;i<n;i++){const b=document.createElement("button");b.type="button";b.className="scripture-dot"+(i===0?" active":"");b.setAttribute("role","tab");b.setAttribute("aria-label","Scripture "+(i+1));b.addEventListener("click",()=>go(i));dotsBox.appendChild(b);}};
+  buildDots();
+  prev.addEventListener("click",()=>step(-1));
+  next.addEventListener("click",()=>step(1));
+  viewport.addEventListener("pointerdown",e=>{dragX=e.clientX;dragDX=0;track.style.transition="none";if(timer)clearInterval(timer);viewport.setPointerCapture(e.pointerId);});
+  viewport.addEventListener("pointermove",e=>{if(dragX===null)return;dragDX=e.clientX-dragX;track.style.transform=`translateX(calc(${-idx*100}% + ${dragDX}px))`;});
+  const up=()=>{if(dragX===null)return;const v=viewport.clientWidth||1;track.style.transition="";dragX=null;if(dragDX<-v/5)step(1);else if(dragDX>v/5)step(-1);else go(idx);};
+  viewport.addEventListener("pointerup",up);
+  viewport.addEventListener("pointercancel",up);
+  restart();
+})();
