@@ -989,7 +989,7 @@ footer{
 }
 /* Mobile header: keep the centered Listen now button centered on hover/press, dim when offline. */
 .header-live-center,.header-live-center:hover,.header-live-center:active{transform:translate(-50%,-50%)}
-.header-live-center.offline{opacity:.45;filter:grayscale(1)}
+.header-live-center.offline,.header-live.offline{opacity:.45;filter:grayscale(1)}
 #liveCard{scroll-margin-top:84px}
 
 /* ---------------------------------------------------------
