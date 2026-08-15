@@ -19,6 +19,7 @@ window.FAITH_CONFIG = {
   STREAM_STATUS_URL: "https://faithtv.tail786c83.ts.net/status-json.xsl",
   NOW_PLAYING_URL: "",
   SPOTIFY_URL: "https://open.spotify.com/show/3rQSg1gCTou5qL3T68jc6q",
+  YOUTUBE_URL: "https://youtube.com/@faithmediang",
   RECONNECT_MS: 5000,
   POLL_MS: 15000
 };
