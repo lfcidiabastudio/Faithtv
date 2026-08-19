@@ -1090,7 +1090,9 @@ html, body{
 body{
   background:
     radial-gradient(circle at 50% -12%, rgba(229,38,53,.035), transparent 34%),
-    linear-gradient(180deg,#ffffff 0%,#ffffff 68%,#fbfaf8 100%);
+    linear-gradient(135deg,#fff 0%,#fce4e6 25%,#fff 50%,#fde8ea 75%,#fff 100%);
+  background-size:400% 400%;
+  animation:gradientShift 15s ease infinite;
 }
 .site-header{
   background:rgba(255,255,255,.88);
