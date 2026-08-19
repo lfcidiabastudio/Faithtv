@@ -3,7 +3,7 @@ const API="/api/content";
 
 async function load(){
   try{const r=await fetch(API,{cache:"no-store"});if(!r.ok)throw 0;return await r.json();}
-  catch(e){return{:"",wednesdayName:"",announcement:{enabled:false,type:"normal",text:""}};}
+  catch(e){return{sundayName:"",wednesdayName:"",announcement:{enabled:false,type:"normal",text:""}};}
 }
 
 async function save(data){
