@@ -743,7 +743,7 @@ button,a{
   --motion-fast:220ms;
   --motion-smooth:700ms;
 }
-.reveal{animation:faithReveal .75s cubic-bezier(.22,1,.36,1) both}
+.reveal.visible{animation:none}
 .hero-copy .hero-title{animation-delay:.10s}
 .hero-copy .hero-date{animation-delay:.16s}
 .hero-copy .countdown{animation-delay:.22s}
@@ -928,19 +928,22 @@ footer{
   opacity:.28;
 }
 
-/* More intentional scroll reveal rather than every item popping at once. */
+/* Scroll reveal — slide in from below */
 .reveal{
   opacity:0;
-  transform:translateY(24px);
+  transform:translateY(50px);
   animation:none;
+  transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1);
 }
 .reveal.visible{
   opacity:1;
   transform:translateY(0);
-  transition:
-    opacity .8s cubic-bezier(.22,1,.36,1),
-    transform .8s cubic-bezier(.22,1,.36,1);
 }
+.service-row.reveal:nth-child(2){transition-delay:.12s}
+.service-row.reveal:nth-child(3){transition-delay:.24s}
+.reveal.reveal-delay-1{transition-delay:.1s}
+.reveal.reveal-delay-2{transition-delay:.2s}
+.reveal.reveal-delay-3{transition-delay:.3s}
 
 /* If JS hasn't marked a reveal visible yet, hero content still enters. */
 .hero-copy.reveal,
