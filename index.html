@@ -17,6 +17,10 @@
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<div id="splash" class="splash">
+  <img src="winners-cropped.svg" alt="FaithTV" class="splash-logo">
+  <div class="splash-text">Welcome to <strong>FaithTV</strong></div>
+</div>
 <a class="skip-link" href="#main">Skip to content</a>
 <div class="grain" aria-hidden="true"></div>
 
@@ -346,6 +350,7 @@
   const header=document.getElementById('siteHeader');
   window.addEventListener('scroll',()=>header.classList.toggle('scrolled',window.scrollY>12),{passive:true});
 })();
+setTimeout(()=>{const s=document.getElementById('splash');if(s)s.classList.add('done')},2200);
 </script>
 </body>
 </html>
