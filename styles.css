@@ -14,8 +14,9 @@
   --shell:min(1180px,calc(100% - 56px));
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;background:var(--bg)}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+html{scroll-behavior:smooth;background:#fff}
+@keyframes gradientShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+body{margin:0;background:linear-gradient(135deg,#fff 0%,#fce4e6 25%,#fff 50%,#fde8ea 75%,#fff 100%);background-size:400% 400%;animation:gradientShift 15s ease infinite;color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 body:has(.mobile-menu.open){overflow:hidden}
 a,button,input{font:inherit}
 a{color:inherit}
@@ -819,9 +820,11 @@ button,a{
    V8 — TRUE CONTINUOUS MOTION + WHITE EDITORIAL UI
    ========================================================= */
 
-/* Cleaner premium white canvas. */
+/* Animated red-white gradient canvas. */
 body{
-  background:#fff;
+  background:linear-gradient(135deg,#fff 0%,#fce4e6 25%,#fff 50%,#fde8ea 75%,#fff 100%);
+  background-size:400% 400%;
+  animation:gradientShift 15s ease infinite;
   color:var(--ink);
 }
 .site-header{
@@ -1078,9 +1081,11 @@ footer{
    V9 — PREMIUM WHITE + CLEAR HEADER LOGO + SPOTIFY CTA
    ========================================================= */
 
-/* Premium white editorial canvas */
+/* Animated red-white gradient canvas */
 html, body{
-  background:#ffffff;
+  background:linear-gradient(135deg,#fff 0%,#fce4e6 25%,#fff 50%,#fde8ea 75%,#fff 100%);
+  background-size:400% 400%;
+  animation:gradientShift 15s ease infinite;
 }
 body{
   background:
