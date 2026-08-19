@@ -2121,3 +2121,7 @@ html.dark .scripture-slide small{color:var(--muted)}
 @media(prefers-reduced-motion:reduce){
   .scripture-track{transition:none}
 }
+.announcement-banner{display:flex;align-items:center;gap:10px;padding:12px 16px;margin:16px 0;border-radius:12px;background:#fde8ea;border:1px solid #f0c4c8;font-size:12px}
+.announcement-banner.important{background:#e52635;color:#fff;border-color:#c41e2b}
+.announcement-type{font-size:8px;font-weight:800;letter-spacing:.12em;flex-shrink:0}
+.announcement-text{font-weight:500}

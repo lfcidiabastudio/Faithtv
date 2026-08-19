@@ -1,0 +1,52 @@
+:root{--ink:#151515;--muted:#77716b;--line:#ddd9d3;--red:#e52635;--bg:#f7f6f3}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+button,input,textarea{font:inherit}
+button{cursor:pointer}
+.admin-shell{width:min(1040px,calc(100% - 32px));margin:auto}
+.admin-header{height:72px;background:#fff;border-bottom:1px solid var(--line)}
+.admin-header .admin-shell{height:100%;display:flex;align-items:center;justify-content:space-between}
+.admin-brand{display:flex;align-items:center;gap:10px;font-size:10px;font-weight:800;letter-spacing:.15em}
+.admin-brand img{width:40px;height:40px;object-fit:contain}
+.mode{font-size:8px;font-weight:800;letter-spacing:.12em;color:#8b847e}
+.admin-main{padding:42px 0 80px}
+.eyebrow{font-size:9px;letter-spacing:.18em;font-weight:800;color:#969089}
+.topline h1{margin:8px 0 26px;font-size:38px;letter-spacing:-.05em}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:24px;box-shadow:0 10px 30px rgba(21,21,21,.03);margin-bottom:16px}
+.card-head{display:flex;justify-content:space-between;align-items:center;font-size:8px;letter-spacing:.16em;font-weight:800;color:#8e8881;margin-bottom:14px}
+.card-head strong{font-size:9px;color:var(--red);letter-spacing:.05em}
+.card p{font-size:11px;line-height:1.55;color:var(--muted)}
+label{display:block;font-size:10px;font-weight:800;color:#66615c;margin:15px 0 7px}
+input,textarea{width:100%;border:1px solid #d3cfc9;background:#fff;border-radius:11px;padding:12px 13px;color:var(--ink);outline:none}
+input:focus,textarea:focus{border-color:#a9a39d;box-shadow:0 0 0 3px rgba(21,21,21,.05)}
+textarea{resize:vertical;min-height:150px;font-size:16px;line-height:1.5;font-weight:500}
+.primary,.announcement-actions button,#hide{border:1px solid var(--line);background:#fff;color:var(--ink);padding:12px 14px;border-radius:11px;font-size:11px;font-weight:800}
+.primary{background:var(--ink);border-color:var(--ink);color:#fff}
+form .primary{margin-top:10px;width:100%}
+.saved{min-height:17px;margin-top:10px;font-size:9px;color:#218a49}
+.type-row{display:flex;gap:8px;margin-top:12px}
+.type{padding:9px 11px!important;font-size:10px!important}
+.type.active{background:#f0efec}
+.announcement-actions{display:flex;gap:9px;margin-top:14px}
+.announcement-actions button{flex:1}
+.preview{background:#fbfaf8;border:1px solid #e5e1db;border-radius:15px;padding:20px}
+.preview-live{color:var(--red);font-size:9px;font-weight:800;letter-spacing:.12em}
+.preview h2{font-size:22px;letter-spacing:-.04em;margin:18px 0 5px}
+.preview p{margin:0;color:#817b74;font-size:10px}
+.preview-announcement{margin-top:18px;padding:14px;border-radius:12px;background:#e9e7e3;font-size:13px;line-height:1.45;font-weight:600;color:#37332f}
+@media(max-width:760px){
+  .admin-shell{width:calc(100% - 24px)}
+  .admin-header{height:64px}
+  .admin-brand{font-size:8px}
+  .admin-brand img{width:34px;height:34px}
+  .mode{font-size:7px}
+  .admin-main{padding:28px 0 60px}
+  .topline h1{font-size:31px}
+  .grid{grid-template-columns:1fr}
+  .card{padding:18px;border-radius:16px}
+  .announcement-actions{flex-direction:column}
+  .announcement-actions button{min-height:46px}
+  input{font-size:16px}
+  textarea{font-size:16px}
+}
