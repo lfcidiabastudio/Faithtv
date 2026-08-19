@@ -30,7 +30,7 @@ window.FAITHTVContent=(function(){
   function get(){return _data;}
 
   fetchContent();
-  setInterval(fetchContent,10000);
+  setInterval(fetchContent,30000);
 
   return{getSundayName,getWednesdayName,get,applyAnnouncement};
 })();
