@@ -2136,3 +2136,6 @@ html.dark .scripture-slide small{color:var(--muted)}
 .splash-text{margin-top:22px;color:#fff;font-size:22px;font-weight:400;letter-spacing:.06em;text-shadow:0 2px 10px rgba(0,0,0,.3)}
 .splash-text strong{font-weight:800}
 @keyframes splashPulse{0%{transform:scale(.8);opacity:.5;filter:brightness(1) drop-shadow(0 4px 20px rgba(0,0,0,.3))}100%{transform:scale(1.08);opacity:1;filter:brightness(1.15) drop-shadow(0 8px 30px rgba(0,0,0,.5))}}
+.visit-main,.contact-main,.listen-utility{background:rgba(255,255,255,.55);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.6);box-shadow:0 8px 32px rgba(21,21,21,.06),inset 0 1px 0 rgba(255,255,255,.5)}
+.contact-main{background:rgba(23,22,21,.7);border-color:rgba(255,255,255,.08)}
+html.dark .visit-main,html.dark .contact-main,html.dark .listen-utility{background:rgba(30,28,26,.55);border-color:rgba(255,255,255,.06);box-shadow:0 8px 32px rgba(0,0,0,.15),inset 0 1px 0 rgba(255,255,255,.04)}
