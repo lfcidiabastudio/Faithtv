@@ -2139,3 +2139,26 @@ html.dark .scripture-slide small{color:var(--muted)}
 .visit-main,.contact-main,.listen-utility{background:rgba(255,255,255,.55);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.6);box-shadow:0 8px 32px rgba(21,21,21,.06),inset 0 1px 0 rgba(255,255,255,.5)}
 .contact-main{background:rgba(23,22,21,.7);border-color:rgba(255,255,255,.08)}
 html.dark .visit-main,html.dark .contact-main,html.dark .listen-utility{background:rgba(30,28,26,.55);border-color:rgba(255,255,255,.06);box-shadow:0 8px 32px rgba(0,0,0,.15),inset 0 1px 0 rgba(255,255,255,.04)}
+
+/* Remove backgrounds everywhere except the play card — glass sections with rounded borders */
+.hero-strip,
+.message-feature,
+.everywhere,
+.visit-main,.contact-main,
+.listen-utility,
+.service-row,
+.quote,
+.install-section,
+footer,
+.hero-logo-disc,
+.listen-intro,
+section{background:transparent!important;border-radius:var(--radius);border:1px solid rgba(255,255,255,.45)}
+.message-feature{background:rgba(255,255,255,.35)!important;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.everywhere{background:rgba(255,255,255,.35)!important;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.visit-main{background:rgba(255,255,255,.35)!important;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.listen-utility{background:rgba(255,255,255,.35)!important;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.contact-main{background:rgba(23,22,21,.6)!important;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+html.dark .message-feature,html.dark .everywhere,html.dark .visit-main,html.dark .listen-utility{background:rgba(30,28,26,.35)!important}
+html.dark .contact-main{background:rgba(23,22,21,.6)!important}
+.site-header{background:rgba(255,255,255,.5)!important;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.4)!important}
+html.dark .site-header{background:rgba(30,28,26,.5)!important}
