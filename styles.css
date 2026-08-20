@@ -839,16 +839,12 @@ body{
 .visit,
 .install-section,
 .quote{
-  background:#fff;
 }
 .hero-strip{
-  background:#e8e6e1;
 }
 footer{
-  background:#faf9f7;
 }
 .everywhere{
-  background:#fbfaf8;
 }
 
 /* ---------------------------------------------------------
@@ -2140,7 +2136,7 @@ html.dark .scripture-slide small{color:var(--muted)}
 .contact-main{background:rgba(23,22,21,.7);border-color:rgba(255,255,255,.08)}
 html.dark .visit-main,html.dark .contact-main,html.dark .listen-utility{background:rgba(30,28,26,.55);border-color:rgba(255,255,255,.06);box-shadow:0 8px 32px rgba(0,0,0,.15),inset 0 1px 0 rgba(255,255,255,.04)}
 
-/* Remove backgrounds everywhere except the play card — glass sections with rounded borders */
+/* Glass sections — semi-transparent with backdrop blur */
 .hero-strip,
 .message-feature,
 .everywhere,
@@ -2151,7 +2147,7 @@ html.dark .visit-main,html.dark .contact-main,html.dark .listen-utility{backgrou
 .install-section,
 footer,
 .hero-logo-disc,
-.listen-intro{background:transparent!important;border-radius:var(--radius);border:5px solid rgba(0,0,0,.85);padding:10px 20px}
+.listen-intro{background:rgba(255,255,255,.35)!important;backdrop-filter:blur(12px)!important;-webkit-backdrop-filter:blur(12px)!important;border-radius:var(--radius);border:5px solid rgba(0,0,0,.85);padding:10px 20px}
 .hero-strip{margin-top:12px}
 .listen-section,.listen-intro{margin-top:60px}
 .services{margin-top:60px}
@@ -2162,3 +2158,4 @@ footer,
 .everywhere{margin-top:60px}
 .site-header{background:rgba(255,255,255,.5)!important;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.4)!important}
 html.dark .site-header{background:rgba(30,28,26,.5)!important}
+html.dark .hero-strip,html.dark .message-feature,html.dark .everywhere,html.dark .visit-main,html.dark .contact-main,html.dark .listen-utility,html.dark .service-row,html.dark .quote,html.dark .install-section,html.dark footer,html.dark .hero-logo-disc,html.dark .listen-intro{background:rgba(30,28,26,.35)!important}
