@@ -14,7 +14,7 @@
   --shell:min(1180px,calc(100% - 56px));
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;background:#fff}
+html{scroll-behavior:smooth;background:transparent}
 @keyframes gradientShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
 body{margin:0;background:linear-gradient(135deg,#fff 0%,#fce4e6 25%,#fff 50%,#fde8ea 75%,#fff 100%);background-size:400% 400%;animation:gradientShift 15s ease infinite;color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 body:has(.mobile-menu.open){overflow:hidden}
@@ -1093,7 +1093,9 @@ html, body{
 body{
   background:
     radial-gradient(circle at 50% -12%, rgba(229,38,53,.035), transparent 34%),
-    linear-gradient(180deg,#ffffff 0%,#ffffff 68%,#fbfaf8 100%);
+    linear-gradient(135deg,#fff 0%,#fce4e6 25%,#fff 50%,#fde8ea 75%,#fff 100%);
+  background-size:400% 400%;
+  animation:gradientShift 15s ease infinite;
 }
 .site-header{
   background:rgba(255,255,255,.88);
@@ -2136,3 +2138,31 @@ html.dark .scripture-slide small{color:var(--muted)}
 .splash-text{margin-top:22px;color:#fff;font-size:22px;font-weight:400;letter-spacing:.06em;text-shadow:0 2px 10px rgba(0,0,0,.3)}
 .splash-text strong{font-weight:800}
 @keyframes splashPulse{0%{transform:scale(.8);opacity:.5;filter:brightness(1) drop-shadow(0 4px 20px rgba(0,0,0,.3))}100%{transform:scale(1.08);opacity:1;filter:brightness(1.15) drop-shadow(0 8px 30px rgba(0,0,0,.5))}}
+
+/* Glassmorphism cards */
+.live-card,
+.visit-main,.contact-main,
+.listen-utility,.listen-intro,
+.service-row,
+.message-feature,
+.everywhere,.quote,.install-section{
+  background:rgba(255,255,255,.45)!important;
+  backdrop-filter:blur(18px) saturate(1.4);
+  -webkit-backdrop-filter:blur(18px) saturate(1.4);
+  border:1px solid rgba(255,255,255,.5)!important;
+  box-shadow:0 8px 32px rgba(21,21,21,.06),inset 0 1px 0 rgba(255,255,255,.6)!important;
+}
+.live-card{background:rgba(23,22,21,.7)!important;border-color:rgba(255,255,255,.08)!important;box-shadow:0 8px 32px rgba(0,0,0,.2),inset 0 1px 0 rgba(255,255,255,.06)!important}
+.site-header{
+  background:rgba(255,255,255,.5)!important;
+  backdrop-filter:blur(20px) saturate(1.4);
+  -webkit-backdrop-filter:blur(20px) saturate(1.4);
+  border-bottom:1px solid rgba(255,255,255,.5)!important;
+}
+.contact-main{background:rgba(23,22,21,.7)!important;border-color:rgba(255,255,255,.08)!important;color:#fff}
+html.dark .live-card,html.dark .contact-main{background:rgba(23,22,21,.75)!important}
+html.dark .live-card,html.dark .contact-main,html.dark .site-header,html.dark .visit-main,html.dark .listen-utility,html.dark .listen-intro,html.dark .service-row,html.dark .message-feature,html.dark .everywhere,html.dark .quote,html.dark .install-section{
+  background:rgba(30,28,26,.6)!important;
+  border-color:rgba(255,255,255,.06)!important;
+  box-shadow:0 8px 32px rgba(0,0,0,.2),inset 0 1px 0 rgba(255,255,255,.04)!important;
+}
