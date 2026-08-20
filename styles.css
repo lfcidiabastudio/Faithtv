@@ -2160,12 +2160,5 @@ footer,
 .quote{margin-top:60px}
 .install-section{margin-top:60px}
 .everywhere{margin-top:60px}
-.message-feature{background:rgba(255,255,255,.35)!important;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
-.everywhere{background:rgba(255,255,255,.35)!important;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
-.visit-main{background:rgba(255,255,255,.35)!important;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
-.listen-utility{background:rgba(255,255,255,.35)!important;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
-.contact-main{background:rgba(23,22,21,.6)!important;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
-html.dark .message-feature,html.dark .everywhere,html.dark .visit-main,html.dark .listen-utility{background:rgba(30,28,26,.35)!important}
-html.dark .contact-main{background:rgba(23,22,21,.6)!important}
 .site-header{background:rgba(255,255,255,.5)!important;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.4)!important}
 html.dark .site-header{background:rgba(30,28,26,.5)!important}
