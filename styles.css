@@ -2152,7 +2152,14 @@ html.dark .visit-main,html.dark .contact-main,html.dark .listen-utility{backgrou
 footer,
 .hero-logo-disc,
 .listen-intro,
-section{background:transparent!important;border-radius:var(--radius);border:5px solid rgba(0,0,0,.85);margin-bottom:12px}
+section{background:transparent!important;border-radius:var(--radius);border:5px solid rgba(0,0,0,.85);padding:10px 20px;margin:0 0 12px}
+.hero-strip{margin-top:12px}
+.listen-section{margin-top:60px}
+.services{margin-top:60px}
+.messages{margin-top:60px}
+.visit{margin-top:60px}
+.quote{margin-top:60px}
+.install-section{margin-top:60px}
 .message-feature{background:rgba(255,255,255,.35)!important;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
 .everywhere{background:rgba(255,255,255,.35)!important;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
 .visit-main{background:rgba(255,255,255,.35)!important;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
