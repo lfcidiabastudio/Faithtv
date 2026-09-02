@@ -1,7 +1,7 @@
 const SERVICES=[
  {day:0,start:[7,0],end:[9,0],title:"Sunday First Service",label:"First Service",time:"7:00 AM",endTime:"9:00 AM"},
  {day:0,start:[9,0],end:[11,30],title:"Sunday Second Service",label:"Second Service",time:"9:00 AM",endTime:"11:30 AM"},
- {day:3,start:[17,0],end:[19,0],title:"Wednesday Service",label:"Wednesday Service",time:"5:00 PM",endTime:"7:00 PM"}
+  {day:3,start:[17,0],end:[19,0],title:"Midweek Communion Service",label:"Midweek Communion Service",time:"5:00 PM",endTime:"7:00 PM"}
 ];
 const TZ="Africa/Lagos", CFG=window.FAITH_CONFIG||{}, $=id=>document.getElementById(id);
 const SPOTIFY=CFG.SPOTIFY_URL||"https://open.spotify.com/show/3rQSg1gCTou5qL3T68jc6q";
