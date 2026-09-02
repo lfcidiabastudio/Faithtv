@@ -49,7 +49,7 @@ function commonHero(s,label,date,sub){$("heroLabel").textContent=label;$("heroTi
 function setLive(s){
  setBodyState("live");setHeaderState(true);commonHero(s,"WE'RE LIVE",`${timeLabel(s.start)} – ${timeLabel(s.end)}`,`${s.label} · On air now`);
  $("earlyCopy").textContent="Tap below to listen to the service.";$("countdown").classList.add("hidden");$("calendarButton").style.display="none";$("notifyButton").style.display="none";
-  $("playerState").textContent="LIVE AUDIO";$("playerDescription").textContent="Praise & Testimony Night";$("pulse").classList.add("live");$("nowPlaying").classList.add("visible");$("nowPlayingText").textContent="FaithTV Live Service";
+  $("playerState").textContent="LIVE AUDIO";$("playerDescription").textContent="Live church audio";$("pulse").classList.add("live");$("nowPlaying").classList.add("visible");$("nowPlayingText").textContent="FaithTV Live Service";
   $("listenerText").textContent=CFG.LISTENERS_URL?"Checking people listening…":"People are listening · live count unavailable";$("listenerBox").classList.toggle("available",false);
  setButton(true,isPlaying?"Pause":"Listen now");setHealth(CFG.STREAM_URL?"ready":"unconfigured",CFG.STREAM_URL?"Ready to connect to FaithTV live audio":"Live audio endpoint not connected yet");
  $("miniTitle").textContent="LIVE · "+s.title;$("miniSubtitle").textContent=`${timeLabel(s.start)} – ${timeLabel(s.end)}`;$("miniLiveDot").classList.add("on");
