@@ -195,13 +195,13 @@ button{cursor:pointer}
 .visit-main,.contact-main{border-radius:var(--radius);padding:48px;background:transparent}
 .visit-main h2{font-size:clamp(48px,5vw,72px);line-height:.93;letter-spacing:-.07em;margin:20px 0}
 .visit-main p,.contact-main p{font-size:12px;line-height:1.7;color:var(--muted);max-width:450px}
-.contact-main{background:transparent;color:#fff;border-color:rgba(255,255,255,.15)}
+.contact-main{background:transparent;color:var(--ink);border-color:var(--line)}
 .contact-main h3{font-size:27px;letter-spacing:-.04em;margin:20px 0 10px}
-.contact-main p{color:#aaa49e}
-.contact-main>a{display:block;text-decoration:none;font-size:15px;padding:13px 0;border-bottom:1px solid #ffffff18}
+.contact-main p{color:var(--muted)}
+.contact-main>a{display:block;text-decoration:none;font-size:15px;padding:13px 0;border-bottom:1px solid var(--line)}
 .contact-main>a span{color:var(--red);float:right}
 .contact-buttons{display:flex;gap:8px;margin-top:22px}
-.small-button{padding:10px 13px;border:1px solid #ffffff25;border-radius:999px;text-decoration:none;font-size:9px;font-weight:800;color:#fff}
+.small-button{padding:10px 13px;border:1px solid var(--line);border-radius:999px;text-decoration:none;font-size:9px;font-weight:800;color:var(--ink)}
 .small-button.red{background:var(--red);border-color:var(--red)}
 
 .install-section{margin-top:130px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:45px 0;display:flex;align-items:center;justify-content:space-between;gap:30px}
