@@ -113,9 +113,7 @@ $("calendarButton").addEventListener("click",()=>window.open(calendarUrl(nextSer
 $("shareButton").addEventListener("click",async()=>{const s=currentService(new Date())||nextService(new Date());const text=currentService(new Date())?`🔴 FaithTV is LIVE — ${s.title}. Join the service: ${location.href}`:`Join FaithTV — ${s.title}, ${dateLabel(s.start)} at ${s.time}. Listen: ${location.href}`;try{if(navigator.share)await navigator.share({title:"FaithTV — "+s.title,text,url:location.href});else{await navigator.clipboard.writeText(text);$("shareButton").textContent="Link copied ✓"}}catch(e){}});
 
 /* PWA */
-window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();deferredPrompt=e;$("installButton").hidden=false;$("mobileInstall").hidden=false;$("installSectionButton").style.display="inline-flex"});
-async function installPwa(){if(!deferredPrompt){location.href="./install.html";return}deferredPrompt.prompt();await deferredPrompt.userChoice;deferredPrompt=null;$("installButton").hidden=true;$("mobileInstall").hidden=true;}
-$("installButton").addEventListener("click",installPwa);$("mobileInstall").addEventListener("click",installPwa);$("installSectionButton").addEventListener("click",installPwa);
+window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();deferredPrompt=e;});
 
 /* MOBILE NAV */
 const menu=$("menu"),drawer=$("mobileMenu");const openDrawer=v=>{drawer.classList.toggle("open",v);menu.setAttribute("aria-expanded",String(v));};menu.addEventListener("click",()=>openDrawer(!drawer.classList.contains("open")));$("menuBackdrop").addEventListener("click",()=>openDrawer(false));$("menuClose").addEventListener("click",()=>openDrawer(false));drawer.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>openDrawer(false)));
