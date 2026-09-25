@@ -4,6 +4,9 @@ const SERVICES=[
   {day:3,start:[17,0],end:[19,0],title:"Midweek Communion Service",label:"Midweek Communion Service",time:"5:00 PM",endTime:"7:00 PM"}
 ];
 const TZ="Africa/Lagos", CFG=window.FAITH_CONFIG||{}, $=id=>document.getElementById(id);
+const SPECIALS=[
+ {year:2026,month:9,day:25,title:"Youth Aflame: September Edition"}
+];
 const SPOTIFY=CFG.SPOTIFY_URL||"https://open.spotify.com/show/3rQSg1gCTou5qL3T68jc6q";
 let audio=null,isPlaying=false,streamLive=false,deferredPrompt=null,notifiedKey=null,healthTimer=null,lastState="";
 
@@ -20,6 +23,11 @@ function buildServiceDate(base,s){return {start:lagosDate(base.year,base.month,b
 function currentService(now){
  const p=parts(now);
  for(const s of SERVICES){if(s.day!==p.weekday)continue;const d=buildServiceDate(p,s);if(now>=d.start&&now<d.end)return {...s,...d};}
+ return null;
+}
+function specialTitle(now){
+ const p=parts(now);
+ for(const sp of SPECIALS){if(sp.year!==p.year||sp.month!==p.month||sp.day!==p.day)continue;const end=new Date(Date.UTC(p.year,p.month-1,p.day,19-1,0,0));if(now<end)return sp.title;}
  return null;
 }
 function justEndedService(now){
@@ -45,7 +53,7 @@ function setBodyState(state){document.body.classList.remove("is-live","is-starti
 function setHealth(type,text){const el=$("streamHealth");if(!el)return;el.className="stream-health "+type;const dot=el.querySelector("i");if(dot)dot.className="";$("streamHealthText").textContent=text;}
 function setHeaderState(live){const el=$("status");if(el){el.className=live?"live-state live":"live-state";el.innerHTML=`<i></i><span>${live?"Live now":"Offline"}</span>`;}const badge=document.querySelector(".card-live-badge");if(badge){badge.classList.toggle("live",live);const t=$("cardLiveText");if(t)t.textContent=live?"LIVE NOW":"OFFLINE";}const hl=$("headerListenText");if(hl){hl.textContent=live?"Listen now":"Offline";hl.closest(".header-live-center").classList.toggle("offline",!live);}const hd=$("headerListenTextDesktop");if(hd){hd.textContent=live?"Listen now":"Offline";hd.closest(".header-live").classList.toggle("offline",!live);}}
 function setButton(enabled,label="Listen now"){$("playerButton").disabled=!enabled;$("playText").textContent=label;$("playIcon").textContent=enabled?(isPlaying?"Ⅱ":"▶"):"○";}
-function commonHero(s,label,date,sub){$("heroLabel").textContent=label;$("heroTitle").textContent=s.day===0?"Financial Fortune Banquet Service":s.title;$("heroDate").textContent=date;$("heroService").textContent=sub;$("playerTitle").textContent=s.day===0?"Financial Fortune Banquet Service":s.title;$("ngClock").textContent=new Intl.DateTimeFormat("en-NG",{timeZone:TZ,hour:"2-digit",minute:"2-digit"}).format(new Date());}
+function commonHero(s,label,date,sub){const sp=specialTitle(new Date());const title=sp||(s.day===0?"Financial Fortune Banquet Service":s.title);$("heroLabel").textContent=label;$("heroTitle").textContent=title;$("heroDate").textContent=date;$("heroService").textContent=sub;$("playerTitle").textContent=title;$("ngClock").textContent=new Intl.DateTimeFormat("en-NG",{timeZone:TZ,hour:"2-digit",minute:"2-digit"}).format(new Date());}
 function setLive(s){
  setBodyState("live");setHeaderState(true);commonHero(s,"WE'RE LIVE",`${timeLabel(s.start)} – ${timeLabel(s.end)}`,`${s.label} · On air now`);
  $("earlyCopy").textContent="Tap below to listen to the service.";$("countdown").classList.add("hidden");$("calendarButton").style.display="none";$("notifyButton").style.display="none";
