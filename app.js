@@ -5,8 +5,8 @@ const SERVICES=[
 ];
 const TZ="Africa/Lagos", CFG=window.FAITH_CONFIG||{}, $=id=>document.getElementById(id);
 const SPECIALS=[
- {year:2026,month:10,day:8,title:"Week of Spiritual Emphasis",start:17,end:19},
- {year:2026,month:10,day:9,title:"Week of Spiritual Emphasis",start:17,end:19}
+ {year:2026,month:10,day:8,title:"Week of Spiritual Emphasis",start:0,end:24},
+ {year:2026,month:10,day:9,title:"Week of Spiritual Emphasis",start:0,end:24}
 ];
 const SPOTIFY=CFG.SPOTIFY_URL||"https://open.spotify.com/show/3rQSg1gCTou5qL3T68jc6q";
 let audio=null,isPlaying=false,streamLive=false,deferredPrompt=null,notifiedKey=null,healthTimer=null,lastState="";
