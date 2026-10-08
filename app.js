@@ -3,11 +3,8 @@ const SERVICES=[
  {day:0,start:[9,0],end:[11,30],title:"Sunday Second Service",label:"Second Service",time:"9:00 AM",endTime:"11:30 AM"},
   {day:3,start:[17,0],end:[19,0],title:"Midweek Communion Service",label:"Midweek Communion Service",time:"5:00 PM",endTime:"7:00 PM"}
 ];
+const WSE={title:"Week of Spiritual Emphasis",label:"Week of Spiritual Emphasis",time:"5:00 PM",endTime:"7:00 PM",start:[17,0],end:[19,0]};
 const TZ="Africa/Lagos", CFG=window.FAITH_CONFIG||{}, $=id=>document.getElementById(id);
-const SPECIALS=[
- {year:2026,month:10,day:8,title:"Week of Spiritual Emphasis",start:0,end:24},
- {year:2026,month:10,day:9,title:"Week of Spiritual Emphasis",start:0,end:24}
-];
 const SPOTIFY=CFG.SPOTIFY_URL||"https://open.spotify.com/show/3rQSg1gCTou5qL3T68jc6q";
 let audio=null,isPlaying=false,streamLive=false,deferredPrompt=null,notifiedKey=null,healthTimer=null,lastState="";
 
@@ -21,24 +18,26 @@ function dateLabel(d){return new Intl.DateTimeFormat("en-US",{timeZone:TZ,weekda
 function shortDate(d){return new Intl.DateTimeFormat("en-US",{timeZone:TZ,weekday:"short",month:"short",day:"numeric"}).format(d)}
 function timeLabel(d){return new Intl.DateTimeFormat("en-NG",{timeZone:TZ,hour:"numeric",minute:"2-digit",hour12:true}).format(d)}
 function buildServiceDate(base,s){return {start:lagosDate(base.year,base.month,base.day,s.start[0],s.start[1]),end:lagosDate(base.year,base.month,base.day,s.end[0],s.end[1])}}
+function wseDayNumbers(y,m){const wd=parts(lagosDate(y,m,1,0,0)).weekday;const f=1+((3-wd+7)%7);return [f,f+1,f+2];}
+function isWseDay(p){return wseDayNumbers(p.year,p.month).includes(p.day);}
+function wseServiceFor(p){const d=buildServiceDate(p,WSE);return {...WSE,...d};}
+function specialTitle(now){return isWseDay(parts(now))?"Week of Spiritual Emphasis":null;}
 function currentService(now){
  const p=parts(now);
+ if(isWseDay(p)){const w=wseServiceFor(p);if(now>=w.start&&now<w.end)return w;return null;}
  for(const s of SERVICES){if(s.day!==p.weekday)continue;const d=buildServiceDate(p,s);if(now>=d.start&&now<d.end)return {...s,...d};}
- return null;
-}
-function specialTitle(now){
- const p=parts(now);
- for(const sp of SPECIALS){if(sp.year!==p.year||sp.month!==p.month||sp.day!==p.day)continue;const start=new Date(Date.UTC(p.year,p.month-1,p.day,(sp.start??0)-1,0,0));const end=new Date(Date.UTC(p.year,p.month-1,p.day,(sp.end??24)-1,0,0));if(now>=start&&now<end)return sp.title;}
  return null;
 }
 function justEndedService(now){
  const p=parts(now);
+ if(isWseDay(p)){const w=wseServiceFor(p);const mins=(now-w.end)/60000;if(mins>=0&&mins<20)return {...w,endedMinutes:Math.floor(mins)};return null;}
  for(const s of SERVICES){if(s.day!==p.weekday)continue;const d=buildServiceDate(p,s);const mins=(now-d.end)/60000;if(mins>=0&&mins<20)return {...s,...d,endedMinutes:Math.floor(mins)};}
  return null;
 }
 function nextService(now){
  const p=parts(now),base=new Date(Date.UTC(p.year,p.month-1,p.day)),a=[];
- for(const s of SERVICES){let delta=(s.day-p.weekday+7)%7;const today=lagosDate(p.year,p.month,p.day,s.start[0],s.start[1]);if(delta===0&&now>=today)delta=7;const d=new Date(base);d.setUTCDate(d.getUTCDate()+delta);const b={year:d.getUTCFullYear(),month:d.getUTCMonth()+1,day:d.getUTCDate()};const x=buildServiceDate(b,s);a.push({...s,...x});}
+ for(const s of SERVICES){let delta=(s.day-p.weekday+7)%7;const today=lagosDate(p.year,p.month,p.day,s.start[0],s.start[1]);if(delta===0&&now>=today)delta=7;const d=new Date(base);d.setUTCDate(d.getUTCDate()+delta);const b={year:d.getUTCFullYear(),month:d.getUTCMonth()+1,day:d.getUTCDate()};if(isWseDay(b))continue;const x=buildServiceDate(b,s);a.push({...s,...x});}
+ for(let k=0;k<2;k++){const ym=p.month+k;const y=p.year+Math.floor((ym-1)/12),m=((ym-1)%12)+1;for(const dd of wseDayNumbers(y,m)){const sv=wseServiceFor({year:y,month:m,day:dd});if(sv.start>now)a.push(sv);}}
  a.sort((x,y)=>x.start-y.start);return a[0];
 }
 function demoState(now){
