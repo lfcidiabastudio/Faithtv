@@ -5,7 +5,8 @@ const SERVICES=[
 ];
 const TZ="Africa/Lagos", CFG=window.FAITH_CONFIG||{}, $=id=>document.getElementById(id);
 const SPECIALS=[
- {year:2026,month:9,day:25,title:"Youth Aflame: September Edition"}
+ {year:2026,month:10,day:8,title:"Week of Spiritual Emphasis",start:17,end:19},
+ {year:2026,month:10,day:9,title:"Week of Spiritual Emphasis",start:17,end:19}
 ];
 const SPOTIFY=CFG.SPOTIFY_URL||"https://open.spotify.com/show/3rQSg1gCTou5qL3T68jc6q";
 let audio=null,isPlaying=false,streamLive=false,deferredPrompt=null,notifiedKey=null,healthTimer=null,lastState="";
@@ -27,7 +28,7 @@ function currentService(now){
 }
 function specialTitle(now){
  const p=parts(now);
- for(const sp of SPECIALS){if(sp.year!==p.year||sp.month!==p.month||sp.day!==p.day)continue;const end=new Date(Date.UTC(p.year,p.month-1,p.day,19-1,0,0));if(now<end)return sp.title;}
+ for(const sp of SPECIALS){if(sp.year!==p.year||sp.month!==p.month||sp.day!==p.day)continue;const start=new Date(Date.UTC(p.year,p.month-1,p.day,(sp.start??0)-1,0,0));const end=new Date(Date.UTC(p.year,p.month-1,p.day,(sp.end??24)-1,0,0));if(now>=start&&now<end)return sp.title;}
  return null;
 }
 function justEndedService(now){
